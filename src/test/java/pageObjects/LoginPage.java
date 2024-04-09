@@ -37,7 +37,7 @@ public class LoginPage extends Page {
 
     public void login() throws InterruptedException {
 
-
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
         usernameField.sendKeys(PassSignIn.getLoginName());
         loginButton.click();
         passwordField.sendKeys(PassSignIn.getPassword());
