@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import pageObjects.HomePage;
 import pageObjects.InitiateAssignmentPage;
 import pageObjects.LoginPage;
@@ -25,7 +26,7 @@ public class HHGservice extends Page {
     @Test
     public void initiateHHGService() throws InterruptedException {
         PageFactory.initElements(driver, loginPage);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.manage().window().maximize();
         driver.get("https://dev.k2relo.com/staff/clients/330/assignments/new");
         loginPage.login();
@@ -39,45 +40,28 @@ public class HHGservice extends Page {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"main-wrapper\"]/client/div[2]/client-profile/tabs/div[2]/new-assignment/div/new-assignment-step2/div/form/div/initiation-nav-buttons/div/btn/button")));
         driver.findElement(By.xpath("//*[@id=\"main-wrapper\"]/client/div[2]/client-profile/tabs/div[2]/new-assignment/div/new-assignment-step2/div/form/div/initiation-nav-buttons/div/btn/button")).click();
         driver.findElement(By.cssSelector("body > app > flash-messages > p")).click();
-
-        //*[@id="mat-datepicker-1"][@aria-label="April 8, 2024"]
-        //*[@id="mat-datepicker-1"]/div/mat-month-view/table/tbody/tr[3]/td[3]/button/span[1]
-        //*[@id="mat-datepicker-1"]/div/mat-month-view/table/tbody/tr[3]/td[4]/button/span[1]
-        //*[@id="mat-datepicker-1"]/div/mat-month-view/table/tbody/tr[6]/td[2]/button/span[1]
-
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#startDate")));
         driver.findElement(By.cssSelector("#startDate")).click();
-        loginPage.findMatCalendarDate("11").click();
-
+        assignmentPage.findMatCalendarDate("12").click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("mat-datepicker-1")));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#mat-select-0")));
+        assignmentPage.clickCloseButton();
+        driver.findElement(By.cssSelector(("#mat-select-0"))).click();
+        driver.findElement(By.xpath("//span[contains(text(), 'United Kingdom')]")).click();
+        driver.findElement(By.cssSelector("input[placeholder='Search city']")).sendKeys("London");
+        driver.findElement(By.xpath("//*[@id=\"mat-option-1244\"]")).click();
+        driver.findElement(By.id("mat-select-2")).click();
+        driver.findElement(By.xpath("//mat-option/span[contains(text(), 'Romania')]")).click();
+       // wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mat-option-text")));
+        driver.findElement(By.cssSelector("input.mat-autocomplete-trigger.form-control.ng-valid.ng-dirty.ng-touched")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(), 'Bucuresti')]"))).click();
+        driver.findElement(By.id("mat-select-12")).click();
+        driver.findElement(By.xpath("//*[@aria-label='dropdown search']")).sendKeys("Romania");
+        driver.findElement(By.xpath("//*[@placeholder='Search city']")).sendKeys("Bucuresti");
+        driver.findElement(By.xpath("//*[@id=\"mat-option-3361\"]/span/location-autocomplete-option/autocomplete-option/div")).click();
 
 
-
-        //mat-calendar//td/button[contains(@aria-label,"${labelText}")]
-
-      /*
-       Actions actions = new Actions(driver);
-        actions.doubleClick(driver.findElement(By.id("startDate")));
-       driver.findElement(By.cssSelector("#mat-datepicker-1 > div > mat-month-view > table > tbody > tr:nth-child(3) > td:nth-child(2) > button")).click();
-                #mat-datepicker-1 > div > mat-month-view > table > tbody > tr:nth-child(2) > td.mat-calendar-body-label.ng-star-inserted
-                #mat-datepicker-1 > div > mat-month-view > table > tbody > tr:nth-child(2) > td:nth-child(2) > button
-                #mat-datepicker-1 > div > mat-month-view > table > tbody > tr:nth-child(1) > td:nth-child(2) > button
-                #mat-datepicker-1 > div > mat-month-view > table > tbody > tr:nth-child(3) > td:nth-child(2) > button
-                #mat-datepicker-1 > div > mat-month-view > table > tbody > tr:nth-child(3) > td:nth-child(3) > button
-                #mat-datepicker-1 > div > mat-month-view > table > tbody > tr:nth-child(3) > td:nth-child(4) > button*/
         assignmentPage.clickNextButton();
-
-
-
     }
 }
-/*  assignmentPage.getTitleForm().sendKeys("Mr");
-        assignmentPage.getFirstNameForm().sendKeys("Ivan");
-        assignmentPage.getLastNameForm().sendKeys("Kravchenko");
-        assignmentPage.getGenderDropdown().click();
-        assignmentPage.getDoBInputField().sendKeys("Male");
-        assignmentPage.getNationalityDropdown().sendKeys("Romanian");
-        assignmentPage.getEmailField().sendKeys("ivanKravchenko@k2corporatemobility.com");
-        assignmentPage.getMaritalStatusFieldDropdown().sendKeys("Single");
-        assignmentPage.getDateOfBirthCalendar().sendKeys("3/3/1992");*/

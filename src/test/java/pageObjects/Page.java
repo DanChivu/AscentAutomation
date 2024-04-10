@@ -17,11 +17,11 @@ public class Page {
     WebElement closeButton;
 
     public void clickCloseButton(){
-
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"mat-dialog-0\"]/tasks-list-dialog/mat-dialog-actions/btn/button")));
         closeButton.click();
     }
-//.addArguments("--headless") add or remove headless from the instantiation here
-    static ChromeOptions options = new ChromeOptions().addArguments("--headless=new");
+//.addArguments("--headless=new").addArguments("--start-maximized"); add or remove headless from the instantiation here
+    static ChromeOptions options = new ChromeOptions();
 
     static WebDriver driver = new ChromeDriver(options);
 
@@ -35,11 +35,11 @@ public class Page {
     }
     public  Wait<WebDriver> wait =
             new FluentWait<>(driver)
-                    .withTimeout(Duration.ofSeconds(10))
+                    .withTimeout(Duration.ofSeconds(30))
                     .pollingEvery(Duration.ofMillis(300))
                     .ignoring(ElementNotInteractableException.class);
     public static void openURL(WebDriver driver, String environmentName, String path) {
-        driver.get(STR."https://\{environmentName}.k2relo.com/\{path}");
+        driver.get("https://"+environmentName+".k2relo.com/"+path);
         // await browser.url(`https://9dd3bd9b7d01.ngrok.app/${path}`)
     }
     public WebElement findMatCalendarDate(String requiredDate){

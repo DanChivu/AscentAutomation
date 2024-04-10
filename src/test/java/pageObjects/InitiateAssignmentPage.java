@@ -17,7 +17,7 @@ public class InitiateAssignmentPage extends Page {
     }
 
     @FindBy(xpath = "//*[@id=\"mat-option-151\"]/span/ngx-mat-select-search/div/input")
-WebElement doBInputField;
+    WebElement doBInputField;
     @FindBy(xpath = "//*[@type=\"submit\"]")
     WebElement nextButton;
 

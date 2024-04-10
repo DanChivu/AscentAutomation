@@ -27,14 +27,6 @@ public class LoginPage extends Page {
     @FindBy(xpath ="/html/body/app/ng-component/div/div[1]/div[2]/login/form/submit-control/btn/button" )
     WebElement loginButton;
 
-   /* private By inputUsername = By.id("#email");
-    private String inputPassword = "#password";
-    private String btnSubmit = "button[type='submit']";
-    private String btnClose = "//button[text()='Close']";
-    private String acceptCookieBtn = "//button/span[text()=' Accept All ']";
-    public String profileMenu = "//ul[@class=\"drop-down profile\"]";
-    private String loginOutBtn = "//a[contains(text(),\"Log out\")]";*/
-
     public void login() throws InterruptedException {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
@@ -42,7 +34,7 @@ public class LoginPage extends Page {
         loginButton.click();
         passwordField.sendKeys(PassSignIn.getPassword());
         loginButton.click();
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         Assertions.assertTrue(driver.findElement((By.id("main-nav"))).isDisplayed());
     }
 }
