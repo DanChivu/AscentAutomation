@@ -28,7 +28,7 @@ public class LoginPage extends Page {
     WebElement loginButton;
 
     public void login() throws InterruptedException {
-
+        driver.get("https://dev.k2relo.com/staff/clients/330/assignments/new");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
         usernameField.sendKeys(PassSignIn.getLoginName());
         loginButton.click();
