@@ -110,7 +110,6 @@ public class InitiateAssignmentPage extends Page {
     public void inputOrigin() {
         driver.findElement(By.xpath("//span[contains(text(), 'United Kingdom')]")).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@placeholder='Search city']"))).sendKeys("London");
-      //  driver.findElement(By.xpath("input[placeholder='Search city']")).sendKeys("London");
         driver.findElement(By.xpath("//*[@id=\"mat-option-1244\"]")).click();
 
     }

@@ -13,6 +13,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
+import java.util.Random;
 
 public class Page {
 
@@ -68,22 +69,23 @@ public class Page {
         String year = String.valueOf(date.getYear());
 
         return STR."\{month} \{day}, \{year}";
-
-
     }
 
 
     public String selectDatePlusDays(LocalDate date, int daysToAdd) {
 
         LocalDate newDate = date.plusDays(daysToAdd);
+        Random rand = new Random();
 
+
+        int randomDay = rand.nextInt(28) + 1;
         String day = String.valueOf(newDate.getDayOfMonth());
 
         String month = newDate.getMonth().getDisplayName(TextStyle.FULL_STANDALONE, Locale.US);
 
         String year = String.valueOf(newDate.getYear());
 
-        return month + " " + day + ", " + year;
+        return month + " " + randomDay + ", " + year;
 
     }
 

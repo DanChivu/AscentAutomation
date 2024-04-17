@@ -1,11 +1,10 @@
 package testCases;
 
+import helper.CommonElements;
 import helper.PassSignIn;
 import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -44,10 +43,17 @@ public class HHGservice {
         assignmentPage.clickNextButton();
         assignmentPage.dismissBanner();
         assignmentPage.wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#startDate")));
+        driver.findElement(By.cssSelector("#startDate")).clear();
         driver.findElement(By.cssSelector("#startDate")).click();
-        assignmentPage.wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@aria-label='"+ assignmentPage.selectDatePlusDays(currentDate, 2) +"']")));
-        driver.findElement(By.xpath("//button[@aria-label='"+ assignmentPage.selectDatePlusDays(currentDate, 2) +"']")).click();     //   driver.findElement(By.xpath("//button[@aria-label='April 20, 2024']")).click();
-        assignmentPage.wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(("#mat-select-0"))));
+
+
+        assignmentPage.wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@aria-label='"+ assignmentPage.selectDatePlusDays(currentDate, 2) +"']"))).click();
+        if(driver.findElement(By.xpath("//*[@id=\"mat-datepicker-1\"]/mat-calendar-header/div/div/button[1]/span[4]")).isDisplayed()){
+            CommonElements.clickBottomRightCorner(driver);
+        }
+ //       driver.findElement(By.xpath("//*[@id=\"mat-datepicker-1\"]/div/mat-month-view/table/tbody/tr[4]/td[3]/button/span[1]")).click();
+        //   driver.findElement(By.xpath("//button[@aria-label='April 20, 2024']")).click();
+        assignmentPage.wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(("#mat-select-10")))).click();
        // driver.findElement(By.cssSelector(("#mat-select-0"))).click();
         assignmentPage.inputOrigin();
         assignmentPage.inputDestination();
