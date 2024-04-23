@@ -109,24 +109,26 @@ public class InitiateAssignmentPage extends Page {
 
     public void inputOrigin() {
         driver.findElement(By.xpath("//span[contains(text(), 'United Kingdom')]")).click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@placeholder='Search city']"))).sendKeys("London");
-        driver.findElement(By.xpath("//*[@id=\"mat-option-1244\"]")).click();
-
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@placeholder='Search city']"))).sendKeys("City of London");
+        driver.findElement(By.cssSelector("div#mat-autocomplete-4 mat-option:first-child")).click();
+       // driver.findElement(By.xpath("//*[@id=\"mat-option-1681\"]")).click();
     }
 
     public void inputDestination() {
-        driver.findElement(By.id("mat-select-2")).click();
-        driver.findElement(By.xpath("//mat-option/span[contains(text(), 'Romania')]")).click();
-        driver.findElement(By.cssSelector("input.mat-autocomplete-trigger.form-control.ng-valid.ng-dirty.ng-touched")).click();
+     //   driver.findElement(By.id("mat-select-12")).click();
+       // driver.findElement(By.xpath("//*[@aria-label=\"dropdown search\"]/span/ngx-mat-select-search/div/input")).sendKeys("Romania");
+        driver.findElement(By.xpath("//*[@id=\"mat-option-651\"]/span/ngx-mat-select-search/div/input")).sendKeys("Romania");
+
+        driver.findElement(By.xpath("//span[contains(text(),  'Romania')]")).click();
+        //driver.findElement(By.cssSelector("input.mat-autocomplete-trigger.form-control.ng-valid.ng-dirty.ng-touched")).click();
         driver.findElement(By.xpath("//*[@id=\"main-wrapper\"]/client/div[2]/client-profile/tabs/div[2]/new-assignment/div/new-assignment-step3/div/form/fieldset/div[1]/locations-selector-control[2]/locations-selector")).click();
-        try {
-            driver.findElement(By.cssSelector("input.mat-autocomplete-trigger.form-control.ng-pristine.ng-valid.ng-touched")).sendKeys("Bucharest");
 
-        }catch (Exception e){
-            driver.findElement(By.cssSelector("#main-wrapper > client > div.content > client-profile > tabs > div.tabs-content > new-assignment > div > new-assignment-step3 > div > form > fieldset > div:nth-child(2) > locations-selector-control:nth-child(5) > locations-selector > autocomplete-selector > div > input")).sendKeys("Bucharest");
+        driver.findElement(By.cssSelector("#main-wrapper > client > div.content > client-profile > tabs > div.tabs-content > new-assignment > div > new-assignment-step3 > div > form > fieldset > div:nth-child(2) > locations-selector-control:nth-child(5) > locations-selector > autocomplete-selector > div > input")).sendKeys("Bucharest");
 
-        }
 
-        driver.findElement(By.xpath("//*[@id=\"mat-option-1739\"]")).click();
+
+        driver.findElement(By.xpath("//*[text()='Bucharest']")).click();
+
+        //  driver.findElement(By.id("mat-autocomplete-5")).click();
     }
 }

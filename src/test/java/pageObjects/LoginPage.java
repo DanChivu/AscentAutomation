@@ -27,14 +27,14 @@ public class LoginPage extends Page {
     @FindBy(xpath ="/html/body/app/ng-component/div/div[1]/div[2]/login/form/submit-control/btn/button" )
     WebElement loginButton;
 
-    public void login() throws InterruptedException {
+    public void login() {
         driver.get("https://dev.k2relo.com/staff/clients/330/assignments/new");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
         usernameField.sendKeys(PassSignIn.getLoginName());
         loginButton.click();
         passwordField.sendKeys(PassSignIn.getPassword());
         loginButton.click();
-        Thread.sleep(2000);
+
         Assertions.assertTrue(driver.findElement((By.id("main-nav"))).isDisplayed());
     }
 }

@@ -27,7 +27,7 @@ public class HHGservice {
     LocalDate currentDate = LocalDate.now();
 
     @Test
-    public void initiateHHGService() throws InterruptedException {
+    public void initiateHHGService() {
         PageFactory.initElements(driver, loginPage);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.manage().window().maximize();
@@ -46,7 +46,6 @@ public class HHGservice {
         driver.findElement(By.cssSelector("#startDate")).clear();
         driver.findElement(By.cssSelector("#startDate")).click();
 
-
         assignmentPage.wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@aria-label='"+ assignmentPage.selectDatePlusDays(currentDate, 2) +"']"))).click();
         if(driver.findElement(By.xpath("//*[@id=\"mat-datepicker-1\"]/mat-calendar-header/div/div/button[1]/span[4]")).isDisplayed()){
             CommonElements.clickBottomRightCorner(driver);
@@ -56,11 +55,15 @@ public class HHGservice {
         assignmentPage.wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(("#mat-select-10")))).click();
        // driver.findElement(By.cssSelector(("#mat-select-0"))).click();
         assignmentPage.inputOrigin();
+        assignmentPage.wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(("#mat-select-12")))).click();
         assignmentPage.inputDestination();
         Select assignmentType = new Select(driver.findElement(By.id("assignmentType")));
         assignmentType.selectByVisibleText("Permanent transfer (PT)");
-        driver.findElement(By.id("mat-select-4")).click();
-        assignmentPage.wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("mat-option")));
+        assignmentPage.wait.until((ExpectedConditions.visibilityOfElementLocated(By.cssSelector("mat-option")))).click();
+
+
+      //  driver.findElement(By.id("mat-select-14")).click();
+     //   assignmentPage.wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("mat-option")));
         driver.findElement(By.xpath("//mat-option/span[contains(text(), 'test')]")).click();
       /*  wait.until(ExpectedConditions.presenceOfElementLocated(By.id("mat-select-4")));
         Select clientContact = new Select(driver.findElement(By.id("mat-select-4")));
