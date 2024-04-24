@@ -1,8 +1,11 @@
 package pageObjects;
 
+import helper.CommonElements;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ReportsPage extends Page {
@@ -43,10 +46,25 @@ public class ReportsPage extends Page {
     @FindBy (id="mat-select-4")
     WebElement assignmentStatusDropdown;
 
-    @FindBy (id = "mat-select-15")
+    @FindBy (xpath = "//*[@id=\"mat-select-14\"]")
     WebElement countryFromDropdown;
     @FindBy (id = "mat-select-16")
     WebElement countryToDropdown;
+
+    public void selectCountry(String countryName, WebDriver driver, Page reportsPage) throws InterruptedException {
+
+
+        PageFactory.initElements(driver, reportsPage);
+
+        countryFromDropdown.click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//span[contains(text(),'" + countryName + "')]")).click();
+        CommonElements.clickBottomRightCorner(driver);
+        countryToDropdown.click();
+        driver.findElement(By.xpath("//span[contains(text(),'" + countryName + "')]")).click();
+        CommonElements.clickBottomRightCorner(driver);
+    }
+
     public void clickReportButton() {
         runReportButton.click();
     }

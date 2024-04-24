@@ -28,8 +28,6 @@ public class Reports {
 
     @Test
     public void reportsTestAllResults() throws InterruptedException {
-
-
         PageFactory.initElements(driver, loginPage);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.manage().window().maximize();
@@ -53,7 +51,12 @@ public class Reports {
         }
     }
     @Test
+    public void allFiltersApplied() throws InterruptedException {
 
+        reportsPage.selectCountry("Peru", driver, reportsPage);
+
+        System.out.println("Country selected successfully!");
+    }
     @AfterAll
     public static void tearDown() {
 

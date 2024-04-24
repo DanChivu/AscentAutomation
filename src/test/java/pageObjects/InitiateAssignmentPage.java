@@ -121,9 +121,11 @@ public class InitiateAssignmentPage extends Page {
 
         driver.findElement(By.xpath("//span[contains(text(),  'Romania')]")).click();
         //driver.findElement(By.cssSelector("input.mat-autocomplete-trigger.form-control.ng-valid.ng-dirty.ng-touched")).click();
-        driver.findElement(By.xpath("//*[@id=\"main-wrapper\"]/client/div[2]/client-profile/tabs/div[2]/new-assignment/div/new-assignment-step3/div/form/fieldset/div[1]/locations-selector-control[2]/locations-selector")).click();
+        driver.findElement(By.xpath("//*[@id=\"main-wrapper\"]/client/div[2]/client-profile/tabs/div[2]/new-assignment/" +
+                "div/new-assignment-step3/div/form/fieldset/div[1]/locations-selector-control[2]/locations-selector")).click();
 
-        driver.findElement(By.cssSelector("#main-wrapper > client > div.content > client-profile > tabs > div.tabs-content > new-assignment > div > new-assignment-step3 > div > form > fieldset > div:nth-child(2) > locations-selector-control:nth-child(5) > locations-selector > autocomplete-selector > div > input")).sendKeys("Bucharest");
+        driver.findElement(By.cssSelector("#main-wrapper > client > div.content > client-profile > tabs > div.tabs-content > new-assignment > div > new-assignment-step3 >" +
+                " div > form > fieldset > div:nth-child(2) > locations-selector-control:nth-child(5) > locations-selector > autocomplete-selector > div > input")).sendKeys("Bucharest");
 
 
 
